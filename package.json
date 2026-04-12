@@ -1,0 +1,27 @@
+{
+  "name": "symposium",
+  "version": "1.0.0",
+  "description": "Multi-agent reasoning engine that turns Opus into Mythos. Spawns parallel Nia-powered research agents to discover knowledge models don't have.",
+  "module": "src/index.ts",
+  "main": "src/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "test": "bun test",
+    "typecheck": "bunx tsc --noEmit --skipLibCheck",
+    "smoke": "bun run scripts/smoke-test.ts",
+    "check": "bun run typecheck && bun test",
+    "setup": "sh install.sh"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "nia-ai-ts": "^0.5.0"
+  }
+}
