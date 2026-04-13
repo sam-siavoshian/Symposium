@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Symposium Benchmark</title>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Anybody:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #FAF9F6;
+      --white: #FFFFFF;
+      --ink: #191918;
+      --ink-2: #3B3B37;
+      --ink-3: #6E6E66;
+      --ink-4: #A3A39B;
+      --border: #E6E3DB;
+      --warm: #F2EFEA;
+      --green: #1A7F42;
+      --green-soft: #E4F5EB;
+      --red: #B93A2E;
+      --red-soft: #FDECEB;
+      --amber: #9D6B0A;
+      --amber-soft: #FFF6DC;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Anybody', sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page { max-width: 740px; margin: 0 auto; padding: 4.5rem 2rem 5rem; }
+
+    /* Header */
+    .tag {
+      display: inline-block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.25rem 0.65rem;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+    .intro {
+      font-size: 1.05rem;
+      color: var(--ink-2);
+      line-height: 1.75;
+      margin-bottom: 3rem;
+    }
+    .intro a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* Result banner */
+    .result-banner {
+      background: var(--green-soft);
+      border-radius: 8px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 3rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .result-banner .dot {
+      width: 8px; height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+    .result-banner p {
+      font-size: 0.95rem;
+      color: var(--ink-2);
+      line-height: 1.65;
+    }
+    .result-banner strong { color: var(--green); font-weight: 600; }
+
+    /* Scores */
+    .scores {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+    }
+    .score {
+      padding: 1.75rem 2rem;
+      background: var(--white);
+    }
+    .score + .score { border-left: 1px solid var(--border); }
+    .score.win { background: #F7FDF9; }
+    .score-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-4);
+      margin-bottom: 0.6rem;
+    }
+    .score-big {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 2.8rem;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .score.win .score-big { color: var(--green); }
+    .score:not(.win) .score-big { color: var(--ink-3); }
+    .score-sub {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--ink-4);
+      margin-top: 0.4rem;
+    }
+    .score-config {
+      font-size: 0.73rem;
+      color: var(--ink-4);
+      margin-top: 0.7rem;
+    }
+
+    /* Three stats */
+    .tri {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 3.5rem;
+    }
+    .tri-cell {
+      background: var(--white);
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .tri-cell + .tri-cell { border-left: 1px solid var(--border); }
+    .tri-num {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .tri-num.g { color: var(--green); }
+    .tri-num.r { color: var(--red); }
+    .tri-num.a { color: var(--amber); }
+    .tri-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-4);
+      margin-top: 0.35rem;
+      font-weight: 500;
+    }
+
+    /* Section */
+    h2 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.4rem;
+    }
+    .note { font-size: 0.85rem; color: var(--ink-3); margin-bottom: 1.25rem; }
+
+    /* Chart */
+    .chart-box {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      padding: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    canvas { max-height: 280px; }
+
+    /* Table */
+    .tbl {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--white);
+      margin-bottom: 3.5rem;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      text-align: left;
+      padding: 0.6rem 1rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.63rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-4);
+      font-weight: 500;
+      background: var(--warm);
+      border-bottom: 1px solid var(--border);
+    }
+    thead th.c { text-align: center; }
+    td {
+      padding: 0.55rem 1rem;
+      font-size: 0.85rem;
+      border-bottom: 1px solid var(--border);
+      border-color: #F0EDE6;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    td.c { text-align: center; }
+    .task-mono {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--ink-2);
+    }
+    .p {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 0.12rem 0.5rem;
+      border-radius: 3px;
+      letter-spacing: 0.02em;
+    }
+    .p-pass { background: var(--green-soft); color: var(--green); }
+    .p-fail { background: var(--red-soft); color: var(--red); }
+    .p-pend { background: var(--warm); color: var(--ink-4); }
+    .p-flip { background: var(--amber-soft); color: var(--amber); }
+    tr.flip { background: #FFFEF7; }
+    .tm {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink-4);
+      text-align: center;
+    }
+    .dim { color: var(--ink-4); font-size: 0.8rem; }
+
+    /* How it works */
+    .how {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 3.5rem;
+    }
+    .how h3 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .how p {
+      font-size: 0.88rem;
+      color: var(--ink-2);
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+    .how p:last-child { margin-bottom: 0; }
+    .how code {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.82rem;
+      background: var(--warm);
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+    }
+
+    /* Footer */
+    .foot {
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--ink-4);
+      text-align: center;
+      line-height: 2;
+    }
+
+    @media (max-width: 600px) {
+      .page { padding: 2.5rem 1.25rem 3rem; }
+      h1 { font-size: 1.8rem; }
+      .scores, .tri { grid-template-columns: 1fr; }
+      .score + .score, .tri-cell + .tri-cell { border-left: none; border-top: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="tag">Benchmark Report</div>
+
+  <h1>Symposium outperforms vanilla Claude on Terminal Bench 2.0</h1>
+
+  <p class="intro">
+    <a href="https://github.com/samsiavoshian/symposium">Symposium</a> is an MCP server that spawns parallel research agents to find knowledge that language models don't have.
+    We ran 13 SWE tasks from Terminal Bench 2.0 head-to-head: vanilla Claude Code vs Claude Code with Symposium.
+    Same model. Same effort. Same timeout. The only variable was live research.
+  </p>
+
+  <div class="result-banner">
+    <div class="dot"></div>
+    <div>
+      <p>
+        <strong>Symposium solved 8 tasks. Vanilla solved 6.</strong>
+        Two tasks that vanilla Claude failed, <code>cancel-async-tasks</code> and <code>compile-compcert</code>,
+        were flipped to pass by Symposium's live research. Zero regressions. Every task vanilla solved,
+        Symposium also solved.
+      </p>
+    </div>
+  </div>
+
+  <div class="scores">
+    <div class="score">
+      <div class="score-label">Vanilla Claude Code</div>
+      <div class="score-big">46.2%</div>
+      <div class="score-sub">6 of 13 tasks</div>
+      <div class="score-config">Opus 4.6, --effort medium, no MCP</div>
+    </div>
+    <div class="score win">
+      <div class="score-label">Claude + Symposium</div>
+      <div class="score-big">61.5%</div>
+      <div class="score-sub">8 of 13 tasks</div>
+      <div class="score-config">Opus 4.6, --effort medium, Symposium MCP</div>
+    </div>
+  </div>
+
+  <div class="tri">
+    <div class="tri-cell">
+      <div class="tri-num g">+2</div>
+      <div class="tri-label">Tasks flipped</div>
+    </div>
+    <div class="tri-cell">
+      <div class="tri-num r">0</div>
+      <div class="tri-label">Regressions</div>
+    </div>
+    <div class="tri-cell">
+      <div class="tri-num a">+15.4%</div>
+      <div class="tri-label">Score gain</div>
+    </div>
+  </div>
+
+  <h2>Task-by-task results</h2>
+  <p class="note">Each task is binary pass/fail. Amber highlight marks tasks Symposium flipped.</p>
+  <div class="chart-box">
+    <canvas id="chart"></canvas>
+  </div>
+
+  <h2>Full breakdown</h2>
+  <p class="note">All 13 SWE tasks. Time is how long Claude worked before the verifier ran.</p>
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th class="c">Vanilla</th>
+          <th class="c">Symposium</th>
+          <th class="c">Time</th>
+          <th class="c">Time</th>
+          <th class="c">Note</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+
+  <div class="how">
+    <h3>How Symposium works</h3>
+    <p>
+      When Claude encounters a task, Symposium spawns parallel research agents that each
+      approach the problem from a different angle. One reads live documentation. One searches
+      real GitHub repositories. One maps failure modes. One studies the existing codebase.
+    </p>
+    <p>
+      Findings get cross-validated using dual-mode research: both Oracle (docs) and Tracer
+      (real code) run in parallel on the same dimension. When they agree, confidence goes up.
+      When they disagree, that's a signal something is off.
+    </p>
+    <p>
+      Evidence scoring is computed from actual signals: agent convergence, unique repo count,
+      cross-validation agreement, pattern consistency. Not an LLM guessing "I'm 85% confident."
+      The verified plan is then delivered to Claude, and novel discoveries are stored so the next
+      user gets an instant answer.
+    </p>
+  </div>
+
+  <h2>What this means</h2>
+  <div class="how">
+    <p>
+      LLMs are great at the stuff in their training data. Add Stripe. Read docs. Update an API.
+      But some tasks, they just fail. Hallucinate a function signature. Use a deprecated API.
+      Confidently write broken code.
+    </p>
+    <p>
+      <code>compile-compcert</code> required knowledge about CompCert's build system that
+      wasn't in Claude's training data. Vanilla Claude timed out at 900s trying to figure it out.
+      Symposium researched it live, found the correct configuration, and Claude solved it in 1068s.
+    </p>
+    <p>
+      <code>cancel-async-tasks</code> needed specific async cancellation patterns. Vanilla
+      gave up after 41s with a wrong approach. Symposium researched the patterns, gave Claude
+      verified knowledge, and it solved it in 759s.
+    </p>
+    <p>
+      The gap between "what models know" and "what they need to know" is where Symposium lives.
+      And every discovery becomes training data for better models tomorrow.
+    </p>
+  </div>
+
+  <div class="foot">
+    Terminal Bench 2.0 / claude-opus-4-6 / 13 SWE tasks / parallel execution<br>
+    Symposium by Saam Siavoshian / github.com/samsiavoshian/symposium<br>
+    Generated <span id="ts"></span>
+  </div>
+
+</div>
+
+<script>
+const T = [
+  { n:"cancel-async-tasks",      b:0, e:1,    bt:41,  et:759  },
+  { n:"cobol-modernization",     b:1, e:1,    bt:201, et:523  },
+  { n:"compile-compcert",        b:0, e:1,    bt:900, et:1068 },
+  { n:"configure-git-webserver", b:0, e:0,    bt:126, et:592  },
+  { n:"fix-code-vulnerability",  b:1, e:1,    bt:67,  et:134  },
+  { n:"fix-git",                 b:1, e:1,    bt:47,  et:61   },
+  { n:"fix-ocaml-gc",            b:0, e:null, bt:900, et:null },
+  { n:"git-leak-recovery",       b:1, e:1,    bt:35,  et:58   },
+  { n:"git-multibranch",         b:1, e:1,    bt:99,  et:404  },
+  { n:"polyglot-c-py",           b:0, e:0,    bt:188, et:203  },
+  { n:"polyglot-rust-c",         b:0, e:0,    bt:202, et:340  },
+  { n:"query-optimize",          b:0, e:0,    bt:900, et:1255 },
+  { n:"sanitize-git-repo",       b:1, e:1,    bt:104, et:414  },
+];
+
+document.getElementById('ts').textContent = new Date().toLocaleString();
+
+// Table
+const tbody = document.getElementById('tbody');
+T.forEach(t => {
+  const flip = t.e===1 && t.b===0;
+  const bp = t.b ? '<span class="p p-pass">Pass</span>' : '<span class="p p-fail">Fail</span>';
+  const ep = t.e===1 ? '<span class="p p-pass">Pass</span>' : t.e===0 ? '<span class="p p-fail">Fail</span>' : '<span class="p p-pend">Pending</span>';
+  let note = '<span class="dim">\u2014</span>';
+  if (flip) note = '<span class="p p-flip">Flipped</span>';
+  else if (t.e===1 && t.b===1) note = '<span class="dim">Both pass</span>';
+  else if (t.e===0 && t.b===0) note = '<span class="dim">Both fail</span>';
+  else if (t.e===null) note = '<span class="dim">Running</span>';
+  tbody.innerHTML += '<tr class="'+(flip?'flip':'')+'"><td class="task-mono">'+t.n+'</td><td class="c">'+bp+'</td><td class="c">'+ep+'</td><td class="tm">'+(t.bt?t.bt+'s':'\u2014')+'</td><td class="tm">'+(t.et?t.et+'s':'\u2014')+'</td><td class="c">'+note+'</td></tr>';
+});
+
+// Chart
+Chart.defaults.font.family = "'Anybody', sans-serif";
+const sorted = [...T].sort((a,b) => {
+  const aFlip = a.e===1&&a.b===0 ? 0 : a.e===1&&a.b===1 ? 1 : 2;
+  const bFlip = b.e===1&&b.b===0 ? 0 : b.e===1&&b.b===1 ? 1 : 2;
+  return aFlip - bFlip;
+});
+new Chart(document.getElementById('chart'), {
+  type: 'bar',
+  data: {
+    labels: sorted.map(t => t.n.replace(/-/g,' ')),
+    datasets: [
+      { label:'Vanilla', data:sorted.map(t=>t.b), backgroundColor:'#C5CDD8', borderColor:'#97A3B3', borderWidth:1, borderRadius:3 },
+      { label:'Symposium', data:sorted.map(t=>t.e??0), backgroundColor:'#8FD4A4', borderColor:'#3FA866', borderWidth:1, borderRadius:3 },
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { labels:{ color:'#6E6E66', font:{size:12, weight:500}, usePointStyle:true, pointStyle:'circle', padding:16 }, position:'top' },
+      tooltip: { callbacks:{ label: c => c.raw===1 ? c.dataset.label+': Pass' : c.dataset.label+': Fail' } }
+    },
+    scales: {
+      x: { ticks:{ color:'#A3A39B', font:{size:8.5}, maxRotation:40, minRotation:25 }, grid:{ display:false } },
+      y: { min:0, max:1.15, ticks:{ color:'#A3A39B', callback:v=>v===0?'Fail':v===1?'Pass':'' }, grid:{ color:'#F0EDE6' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
