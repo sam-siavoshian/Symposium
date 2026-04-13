@@ -1,0 +1,6 @@
+All correct. The file `/app/polyglot/main.py.c` works as a polyglot for both Python 3 and C.
+
+**How it works:**
+
+- **C sees**: `#if 0` skips everything until `#endif` (all the Python code), then compiles the normal C `main` function. The `//"""` at the end is just a C comment.
+- **Python sees**: `#if 0` and `#endif` are comments (they start with `#`). It runs the Python code, then `_ = """` opens a triple-quoted string that swallows all the C code. `//"""` closes that string. Python never tries to parse the C syntax.

@@ -1,0 +1,11 @@
+All secrets have been sanitized. Here's what was found and replaced across 3 files:
+
+| File | Secret Type | Original Value | Replaced With |
+|---|---|---|---|
+| `ray_processing/ray_cluster.yaml:29` | AWS Access Key ID | `AKIA1234567890123456` | `<your-aws-access-key-id>` |
+| `ray_processing/ray_cluster.yaml:30` | AWS Secret Access Key | `D4w8z9wKN1aV...` | `<your-aws-secret-access-key>` |
+| `ray_processing/ray_cluster.yaml:43` | GitHub Token | `ghp_aBcDeFgHi...` | `<your-github-token>` |
+| `ray_processing/ray_cluster.yaml:44` | HuggingFace Token | `hf_abcdefghi...` | `<your-huggingface-token>` |
+| `ray_processing/process.py:122` | AWS Access Key ID | `AKIA1234567890123456` | `<your-aws-access-key-id>` |
+| `ray_processing/process.py:123` | AWS Secret Access Key | `D4w8z9wKN1aV...` | `<your-aws-secret-access-key>` |
+| `exp_data/datasets/tokenized/...arcade100k.json` | HuggingFace Token (in embedded diff) | `hf_REDACTED...` (2 occurrences) | `<your-huggingface-token>` |

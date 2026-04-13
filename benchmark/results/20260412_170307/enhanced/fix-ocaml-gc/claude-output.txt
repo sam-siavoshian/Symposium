@@ -1,0 +1,25 @@
+All 40 basic tests pass. Here's what was wrong and how I fixed it:
+
+## The Bug
+
+In `runtime/shared_heap.c`, line 650 of the `pool_sweep` function, the pointer advancement at the end of the sweep loop was:
+
+```c
+p += Whsize_hd(hd);
+```
+
+This is incorrect. `Whsize_hd(hd)` means "header-included word size of the block as encoded in the header." But for free blocks in the run-length compressed scheme, the `wosize` field of the header stores the **count of contiguous free blocks that follow**, not the actual word size of the block. So `Whsize_hd(hd)` gives `count + 1`, which is completely wrong for pointer arithmetic.
+
+Every other traversal loop in the file (e.g., `calc_pool_stats` at line 304, `pool_verify` at line 789, etc.) correctly uses:
+
+```c
+p += wh;
+```
+
+where `wh = wsize_sizeclass[sz]` is the fixed block size for the pool. All blocks in a pool are the same size, so you always advance by `wh`.
+
+## The Fix
+
+Changed line 650 from `p += Whsize_hd(hd)` to `p += wh`.
+
+This caused the sweep to misalign its pointer into the middle of blocks, corrupting the heap. When the compiler tried to bootstrap itself (allocating heavily), the corrupted freelist would cause crashes.

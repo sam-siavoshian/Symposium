@@ -1,0 +1,200 @@
+╔══════════════════════════════════════════════════╗
+║  Terminal-Bench 2.0: Symposium Benchmark Runner  ║
+╚══════════════════════════════════════════════════╝
+
+[17:03:07] Tasks:       13 SWE tasks
+[17:03:07] Concurrency: 13 (all parallel)
+[17:03:07] Results:     /Users/samsiavoshian/Desktop/Coding Stuff/Hackathons/Symposium/benchmark/results/20260412_170307
+[17:03:07] Baseline:    true (low reasoning, no MCP, no skills)
+[17:03:07] Enhanced:    true (auto reasoning, Symposium MCP)
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  baseline RUN — 13 tasks, 13 concurrent
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[17:03:07] [baseline] START fix-code-vulnerability
+[17:03:07] [baseline] START fix-git
+[17:03:07] [baseline] START configure-git-webserver
+[17:03:07] [baseline] START cancel-async-tasks
+[17:03:07] [baseline] START fix-ocaml-gc
+[17:03:07] [baseline] START polyglot-c-py
+[17:03:07] [baseline] START git-multibranch
+[17:03:07] [baseline] START cobol-modernization
+[17:03:07] [baseline] START query-optimize
+[17:03:07] [baseline] START compile-compcert
+[17:03:07] [baseline] START git-leak-recovery
+[17:03:07] [baseline] START polyglot-rust-c
+[17:03:07] [baseline] START sanitize-git-repo
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+[17:03:09] [baseline] Container ec34da1e6ff9 for sanitize-git-repo
+[17:03:09] [baseline] Container 29607ec92e91 for fix-ocaml-gc
+[17:03:09] [baseline] Container 2cfeebd15ce3 for git-multibranch
+[17:03:09] [baseline] Container 5ca033834ffc for git-leak-recovery
+[17:03:09] [baseline] Container ac7fcfe49b05 for compile-compcert
+[17:03:09] [baseline] Container c9b410e68176 for cobol-modernization
+[17:03:09] [baseline] Container 3ae54cadc9d1 for polyglot-c-py
+[17:03:09] [baseline] Container 222ccb7e62b1 for cancel-async-tasks
+[17:03:09] [baseline] Container b2c83d101e56 for fix-code-vulnerability
+[17:03:09] [baseline] Container 618402e4617c for fix-git
+[17:03:09] [baseline] Container 7af6843fe232 for polyglot-rust-c
+[17:03:09] [baseline] Container 7caa4151a7e0 for configure-git-webserver
+[17:03:09] [baseline] Container e1a1e73fe3ff for query-optimize
+[17:03:44] [baseline] Claude done: git-leak-recovery (35s)
+[17:03:50] [baseline] Claude done: cancel-async-tasks (41s)
+[17:03:56] [baseline] Claude done: fix-git (47s)
+[17:04:16] [baseline] Claude done: fix-code-vulnerability (67s)
+[17:04:28] [baseline] PASS: git-leak-recovery (35s, reward=1)
+[17:04:34] [baseline] PASS: fix-git (47s, reward=1)
+[17:04:39] [baseline] PASS: fix-code-vulnerability (67s, reward=1)
+[17:04:48] [baseline] Claude done: git-multibranch (99s)
+[17:04:51] [baseline] FAIL: cancel-async-tasks (41s, reward=0)
+[17:04:53] [baseline] Claude done: sanitize-git-repo (104s)
+[17:05:15] [baseline] PASS: sanitize-git-repo (104s, reward=1)
+[17:05:15] [baseline] Claude done: configure-git-webserver (126s)
+[17:05:35] [baseline] PASS: git-multibranch (99s, reward=1)
+[17:06:08] [baseline] FAIL: configure-git-webserver (126s, reward=0)
+[17:06:17] [baseline] Claude done: polyglot-c-py (188s)
+[17:06:30] [baseline] Claude done: cobol-modernization (201s)
+[17:06:31] [baseline] Claude done: polyglot-rust-c (202s)
+[17:06:48] [baseline] FAIL: polyglot-c-py (188s, reward=0)
+[17:06:55] [baseline] PASS: cobol-modernization (201s, reward=1)
+[17:07:31] [baseline] FAIL: polyglot-rust-c (202s, reward=0)
+[17:18:09] [baseline] Claude done: compile-compcert (900s)
+[17:18:09] [baseline] Claude done: fix-ocaml-gc (900s)
+[17:18:10] [baseline] Claude done: query-optimize (901s)
+[17:19:23] [baseline] FAIL: compile-compcert (900s, reward=0)
+[17:25:09] [baseline] FAIL: fix-ocaml-gc (900s, reward=0)
+[17:25:09] [baseline] FAIL: query-optimize (901s, reward=0)
+
+[17:25:09] baseline COMPLETE in 1322s
+[17:25:09] baseline SCORE: 6/13 (46%)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  enhanced RUN — 13 tasks, 13 concurrent
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[17:25:10] [enhanced] START cobol-modernization
+[17:25:10] [enhanced] START fix-ocaml-gc
+[17:25:10] [enhanced] START compile-compcert
+[17:25:10] [enhanced] START fix-git
+[17:25:10] [enhanced] START cancel-async-tasks
+[17:25:10] [enhanced] START git-leak-recovery
+[17:25:10] [enhanced] START configure-git-webserver
+[17:25:10] [enhanced] START fix-code-vulnerability
+[17:25:10] [enhanced] START polyglot-c-py
+[17:25:10] [enhanced] START git-multibranch
+[17:25:10] [enhanced] START polyglot-rust-c
+[17:25:10] [enhanced] START query-optimize
+[17:25:10] [enhanced] START sanitize-git-repo
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+[17:25:11] [enhanced] Container e8cbd9c89f92 for polyglot-rust-c
+[17:25:11] [enhanced] Container 4a1b2e7a9023 for configure-git-webserver
+[17:25:11] [enhanced] Container cedc170fac7d for fix-git
+[17:25:11] [enhanced] Container 48f8452f5cc5 for fix-ocaml-gc
+[17:25:11] [enhanced] Container 82d2e486ddca for cobol-modernization
+[17:25:11] [enhanced] Container e6cf868975cf for git-multibranch
+[17:25:11] [enhanced] Container 661e81c65e2b for fix-code-vulnerability
+[17:25:11] [enhanced] Container 32bd034f819a for cancel-async-tasks
+[17:25:11] [enhanced] Container d530c86b2f23 for compile-compcert
+[17:25:11] [enhanced] Container 1177dbf02c7e for git-leak-recovery
+[17:25:11] [enhanced] Container 57fceaabd08e for query-optimize
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+[17:25:12] [enhanced] Container 5a5ed12a065a for polyglot-c-py
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+[17:25:14] [enhanced] Container 75ef08aef6de for sanitize-git-repo
+[17:26:10] [enhanced] Claude done: git-leak-recovery (58s)
+[17:26:12] [enhanced] Claude done: fix-git (61s)
+[17:26:33] [enhanced] PASS: fix-git (61s, reward=1)
+[17:26:40] [enhanced] PASS: git-leak-recovery (58s, reward=1)
+[17:27:26] [enhanced] Claude done: fix-code-vulnerability (134s)
+[17:27:40] [enhanced] PASS: fix-code-vulnerability (134s, reward=1)
+[17:28:35] [enhanced] Claude done: polyglot-c-py (203s)
+[17:29:02] [enhanced] FAIL: polyglot-c-py (203s, reward=0)
+[17:30:51] [enhanced] Claude done: polyglot-rust-c (340s)
+[17:31:50] [enhanced] FAIL: polyglot-rust-c (340s, reward=0)
+[17:31:55] [enhanced] Claude done: git-multibranch (404s)
+[17:32:08] [enhanced] Claude done: sanitize-git-repo (414s)
+[17:32:28] [enhanced] PASS: sanitize-git-repo (414s, reward=1)
+[17:32:47] [enhanced] PASS: git-multibranch (404s, reward=1)
+[17:33:54] [enhanced] Claude done: cobol-modernization (523s)
+[17:34:11] [enhanced] PASS: cobol-modernization (523s, reward=1)
+[17:35:03] [enhanced] Claude done: configure-git-webserver (592s)
+[17:35:52] [enhanced] FAIL: configure-git-webserver (592s, reward=0)
+[17:37:50] [enhanced] Claude done: cancel-async-tasks (759s)
+[17:38:22] [enhanced] PASS: cancel-async-tasks (759s, reward=1)
+[17:43:00] [enhanced] Claude done: compile-compcert (1068s)
+[17:43:28] [enhanced] PASS: compile-compcert (1068s, reward=1)
+[17:46:07] [enhanced] Claude done: query-optimize (1255s)
+[17:49:31] [enhanced] Claude done: fix-ocaml-gc (1460s)
+[18:00:53] [enhanced] FAIL: query-optimize (1255s, reward=0)
+[18:20:34] [enhanced] PASS: fix-ocaml-gc (1460s, reward=1)
+
+[18:20:35] enhanced COMPLETE in 3326s
+[18:20:35] enhanced SCORE: 9/13 (69%)
+
+[18:20:35] TOTAL TIME: 4648s (77m 28s)
+
+
+Saved: /Users/samsiavoshian/Desktop/Coding Stuff/Hackathons/Symposium/benchmark/results/20260412_170307/comparison.json
+Saved: /Users/samsiavoshian/Desktop/Coding Stuff/Hackathons/Symposium/benchmark/results/20260412_170307/report.html
+
+================================================
+  Terminal Bench 2.0 - SWE Results
+================================================
+  Vanilla Claude:  6/13  (46.2%)
+  Symposium MCP:   9/13  (69.2%)
+  Delta:           +3 tasks  (+23%)
+------------------------------------------------
+    fix-code-vulnerability         baseline=PASS  symposium=PASS
+    fix-git                        baseline=PASS  symposium=PASS
+  ^ fix-ocaml-gc                   baseline=FAIL  symposium=PASS
+  ^ cancel-async-tasks             baseline=FAIL  symposium=PASS
+    cobol-modernization            baseline=PASS  symposium=PASS
+  ^ compile-compcert               baseline=FAIL  symposium=PASS
+    configure-git-webserver        baseline=FAIL  symposium=FAIL
+    git-leak-recovery              baseline=PASS  symposium=PASS
+    git-multibranch                baseline=PASS  symposium=PASS
+    polyglot-c-py                  baseline=FAIL  symposium=FAIL
+    polyglot-rust-c                baseline=FAIL  symposium=FAIL
+    query-optimize                 baseline=FAIL  symposium=FAIL
+    sanitize-git-repo              baseline=PASS  symposium=PASS
+================================================
+
+Open the report: open "/Users/samsiavoshian/Desktop/Coding Stuff/Hackathons/Symposium/benchmark/results/20260412_170307/report.html"
+
+All logs saved to: /Users/samsiavoshian/Desktop/Coding Stuff/Hackathons/Symposium/benchmark/results/20260412_170307
+  master.log         — full run log
+  run-config.json    — run configuration
+  <mode>/<task>/     — per-task results:
+    claude-output.txt   — Claude's full response
+    claude-stderr.txt   — Claude debug/verbose output
+    claude-command.txt  — exact command that was run
+    test-output.txt     — test script output
+    container-logs.txt  — Docker container logs
+    verifier-logs/      — verifier output files
+    reward.txt          — 0 or 1
+    meta.json           — task metadata + timing
+  comparison.json    — structured results comparison

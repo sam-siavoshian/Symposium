@@ -1,0 +1,18 @@
+Done. Here's what's set up:
+
+- **Bare git repo** at `/git/server` — accepts pushes via SSH
+- **Post-receive hook** — on every push to `master`, checks out the working tree to `/var/www/git`
+- **Nginx** listening on port 8080, serving files from `/var/www/git`
+- **SSH server** running for git access
+- **`user` account** created, owns the repo and web root
+
+You just need to set up SSH key auth for `user` (copy your public key to `~user/.ssh/authorized_keys` on the server), then the full workflow works:
+
+```
+git clone user@server:/git/server
+echo "hello world" > hello.html
+git add hello.html
+git commit -m "add hello.html"
+git push origin master
+curl http://server:8080/hello.html  # → hello world
+```

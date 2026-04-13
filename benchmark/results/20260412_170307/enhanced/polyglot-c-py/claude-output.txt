@@ -1,0 +1,18 @@
+Both paths produce identical, correct results:
+
+| N | fib(N) |
+|---|--------|
+| 0 | 0 |
+| 1 | 1 |
+| 2 | 1 |
+| 10 | 55 |
+| 20 | 6765 |
+
+The GCC warnings about `'''` are harmless (they come from the `#if 0` blocks that the preprocessor skips after noting the character literal issue, but the code compiles and runs correctly).
+
+**How the polyglot works:**
+
+The trick is the `#if 0` / `'''` / `#endif` sandwich:
+
+- **C sees**: `#if 0` skips everything until `#endif`, so the `'''` and Python code are invisible. The C code in the middle compiles normally. The second `#if 0` block hides the Python code.
+- **Python sees**: `#if 0` is a comment (starts with `#`). `'''` opens a triple-quoted string that swallows all the C code until the next `'''`. Then the Python code runs. `#endif` is just another comment.

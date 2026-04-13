@@ -1,0 +1,9 @@
+Done. The optimization is verified:
+
+**Original: ~9m38s. Optimized: ~2.2s.** Same 500-row output, confirmed with `diff`.
+
+**What changed:**
+
+The original query had two correlated scalar subqueries in the SELECT list that ran for *every qualifying row*. The `top_synset_sense_count` subquery was particularly bad because it nested the entire `top_synsetid` computation inside it, so for each of the 500 rows, it was doing 3 full scans of `senses` with GROUP BY + ORDER BY.
+
+The fix: a single CTE (`top_synsets`) pre-computes the top synset per word once using `ROW_NUMBER() OVER (PARTITION BY wordid ORDER BY COUNT(*) DESC, synsetid ASC)`. This materializes the result, then the main query just JOINs against it. One pass over `senses` for the CTE instead of ~1500 correlated subquery executions.

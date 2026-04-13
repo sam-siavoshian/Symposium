@@ -1,0 +1,25 @@
+{
+  "timestamp": "20260412_170307",
+  "tasks": [
+  "fix-code-vulnerability",
+  "fix-git",
+  "fix-ocaml-gc",
+  "cancel-async-tasks",
+  "cobol-modernization",
+  "compile-compcert",
+  "configure-git-webserver",
+  "git-leak-recovery",
+  "git-multibranch",
+  "polyglot-c-py",
+  "polyglot-rust-c",
+  "query-optimize",
+  "sanitize-git-repo"
+],
+  "concurrency": 13,
+  "run_baseline": true,
+  "run_enhanced": true,
+  "baseline_effort": "low",
+  "enhanced_effort": "high",
+  "model": "claude-opus-4-6",
+  "timeout_per_task_sec": 900
+}

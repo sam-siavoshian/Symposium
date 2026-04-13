@@ -1,0 +1,8 @@
+Done. The Python script at `/app/program.py` reimplements the COBOL program exactly. It:
+
+- Reads fixed-length binary records from ACCOUNTS.DAT (34 bytes), BOOKS.DAT (28 bytes), TRANSACTIONS.DAT (22 bytes)
+- Reads INPUT.DAT (line-based, padded to 22 bytes)
+- Validates buyer/seller exist in accounts and book exists with seller as owner
+- On valid transaction: subtracts amount from buyer, adds to seller, transfers book ownership, appends transaction record
+- On invalid transaction: prints error, leaves files unchanged
+- Both success and failure cases produce byte-identical output to the COBOL program

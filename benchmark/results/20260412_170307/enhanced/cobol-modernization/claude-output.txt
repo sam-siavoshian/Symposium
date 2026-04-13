@@ -1,0 +1,16 @@
+The Python script at `/app/program.py` is complete and verified. Here's what it does:
+
+**Record layouts** (matching COBOL exactly):
+- `ACCOUNTS.DAT`: 34-byte records (4 ID + 20 name + 10 balance)
+- `BOOKS.DAT`: 28-byte records (4 ID + 20 title + 4 owner)
+- `TRANSACTIONS.DAT`: 22-byte records (4 book + 10 amount + 4 seller + 4 buyer)
+- `INPUT.DAT`: 22-byte record (4 buyer + 4 seller + 4 book + 10 amount)
+
+**Logic** (matching COBOL exactly):
+1. Reads INPUT.DAT, pads to 22 bytes if shorter
+2. Validates buyer and seller exist in ACCOUNTS.DAT
+3. Validates book exists in BOOKS.DAT and is owned by the seller
+4. If all validations pass: subtracts amount from buyer's balance, adds to seller's balance, updates book ownership to buyer, appends a transaction record
+5. All files use record-sequential format (fixed-length binary records, no newlines)
+
+**Verified**: byte-for-byte identical output to the COBOL program for both valid and invalid transaction inputs.

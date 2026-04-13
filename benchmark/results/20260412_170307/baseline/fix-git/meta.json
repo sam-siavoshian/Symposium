@@ -1,0 +1,11 @@
+{
+  "task": "fix-git",
+  "mode": "baseline",
+  "docker_image": "alexgshaw/fix-git:20251031",
+  "duration_sec": 47,
+  "reward": 1,
+  "container_id": "618402e4617c2af083e5c4d4333fd9b6fb36580d5b2e9cbed2f8b2bd4f1a64d8",
+  "timestamp": "20260412_170307",
+  "model": "claude-opus-4-6",
+  "effort": "low"
+}

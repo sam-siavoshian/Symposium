@@ -1,0 +1,28 @@
+Everything is configured and tested. Here's what's set up:
+
+**What was done:**
+
+1. **Installed** git, openssh-server, and nginx on the Ubuntu 24.04 container
+2. **Created** the `user` account with home directory and bash shell
+3. **Created** a bare git repo at `/git/server` owned by `user`
+4. **Created** a `post-receive` hook at `/git/server/hooks/post-receive` that checks out pushed content to `/var/www/html` on every push
+5. **Configured** nginx to serve `/var/www/html` on port 8080
+6. **Started** both sshd (port 22) and nginx (port 8080)
+7. **Prepared** `/home/user/.ssh/authorized_keys` for your SSH key
+
+**The post-receive hook** (`/git/server/hooks/post-receive`):
+```bash
+#!/bin/bash
+GIT_WORK_TREE=/var/www/html git checkout -f
+```
+
+**Your workflow will be:**
+```
+git clone user@server:/git/server
+echo "hello world" > hello.html
+git add hello.html && git commit -m "add hello.html"
+git push origin master
+curl http://server:8080/hello.html  # → hello world
+```
+
+**What you need to do:** Add your SSH public key to `/home/user/.ssh/authorized_keys` on the container (you mentioned you'd handle login setup).

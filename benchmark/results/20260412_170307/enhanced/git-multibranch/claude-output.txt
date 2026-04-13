@@ -1,0 +1,14 @@
+Both endpoints are working correctly:
+
+- `https://localhost:8443/index.html` returns "main branch content"
+- `https://localhost:8443/dev/index.html` returns "dev branch content"
+
+Here's what was set up:
+
+1. **Git user** — `git` user with password `password`, bare repo at `/git/project`
+2. **SSH** — `sshd` configured with `PasswordAuthentication yes` in `/etc/ssh/sshd_config.d/git-server.conf`
+3. **Post-receive hook** — reads pushed branch names, checks out `main` to `/var/www/main` and `dev` to `/var/www/dev`
+4. **SSL** — self-signed cert at `/etc/ssl/certs/nginx-selfsigned.crt`
+5. **Nginx** — listens on `8443 ssl`, serves `/var/www/main` at `/` and `/var/www/dev` at `/dev/` via `alias`
+
+Deployment happens synchronously inside the post-receive hook (a single `git checkout -f`), well under the 3-second requirement.

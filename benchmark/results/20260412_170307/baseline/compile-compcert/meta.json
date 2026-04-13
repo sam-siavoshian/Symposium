@@ -1,0 +1,11 @@
+{
+  "task": "compile-compcert",
+  "mode": "baseline",
+  "docker_image": "alexgshaw/compile-compcert:20251031",
+  "duration_sec": 900,
+  "reward": 0,
+  "container_id": "ac7fcfe49b058bae99648312b59c6f296186fa0c87852151c4c9bebfdfdca9d1",
+  "timestamp": "20260412_170307",
+  "model": "claude-opus-4-6",
+  "effort": "low"
+}

@@ -1,0 +1,11 @@
+{
+  "task": "polyglot-rust-c",
+  "mode": "enhanced",
+  "docker_image": "alexgshaw/polyglot-rust-c:20251031",
+  "duration_sec": 9,
+  "reward": 0,
+  "container_id": "546e50baca928ac65e8215f316aa03f60853a54730c0829a9692de9013b4bef3",
+  "timestamp": "20260412_162805",
+  "model": "claude-opus-4-6",
+  "effort": "medium"
+}

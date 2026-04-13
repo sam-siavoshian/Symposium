@@ -1,0 +1,11 @@
+{
+  "task": "query-optimize",
+  "mode": "baseline",
+  "docker_image": "alexgshaw/query-optimize:20251031",
+  "duration_sec": 901,
+  "reward": 0,
+  "container_id": "e1a1e73fe3ff64b5e7b2a0d0c04682a224112bde90f52a6b29eaba7f55ec6529",
+  "timestamp": "20260412_170307",
+  "model": "claude-opus-4-6",
+  "effort": "low"
+}

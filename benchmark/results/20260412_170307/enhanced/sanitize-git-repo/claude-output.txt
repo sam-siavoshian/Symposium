@@ -1,0 +1,13 @@
+Done. Here's a summary of what was sanitized:
+
+**3 files modified, 5 unique secrets replaced:**
+
+| Secret Type | Original Value | Placeholder | Files |
+|---|---|---|---|
+| AWS Access Key ID | `AKIA1234567890123456` | `<your-aws-access-key-id>` | `ray_processing/ray_cluster.yaml:29`, `ray_processing/process.py:122` |
+| AWS Secret Access Key | `D4w8z9wKN1aVeT3BpQj6kIuN7wH8X0M9KfV5OqzF` | `<your-aws-secret-access-key>` | `ray_processing/ray_cluster.yaml:30`, `ray_processing/process.py:123` |
+| GitHub Token | `ghp_aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789` | `<your-github-token>` | `ray_processing/ray_cluster.yaml:43` |
+| HuggingFace Token | `hf_abcdefghijklmnopqrstuvwxyz123456` | `<your-huggingface-token>` | `ray_processing/ray_cluster.yaml:44` |
+| HuggingFace Token | `hf_REDACTED` | `<your-huggingface-token>` | `exp_data/.../rw_v2_fasttext_openhermes_vs_rw_v2_bigram_0.1_arcade100k.json` (embedded in a diff string, 2 occurrences) |
+
+No other files were touched. The verification grep confirmed zero remaining instances of any secret value in the repository.

@@ -1,0 +1,11 @@
+{
+  "task": "git-multibranch",
+  "mode": "enhanced",
+  "docker_image": "alexgshaw/git-multibranch:20251031",
+  "duration_sec": 404,
+  "reward": 1,
+  "container_id": "e6cf868975cfb5d1d9c613995d3f5e5613ac01a14f287116f7020f628cb68b9b",
+  "timestamp": "20260412_170307",
+  "model": "claude-opus-4-6",
+  "effort": "high"
+}

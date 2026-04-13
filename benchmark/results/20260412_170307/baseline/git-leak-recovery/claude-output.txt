@@ -1,0 +1,5 @@
+Done.
+
+1. **Secret recovered**: `secret[lost_and_found_in_git]` written to `/app/secret.txt`
+2. **Secret cleaned**: The dangling commit `6b4c75c` was purged via `reflog expire` + `gc --prune=now --aggressive`. Grep confirms no trace remains in `.git/`.
+3. **Commits preserved**: Both original commits (`7a2420e`, `c6d9997`) and their messages are untouched.

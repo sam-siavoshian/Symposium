@@ -1,0 +1,11 @@
+{
+  "task": "cancel-async-tasks",
+  "mode": "baseline",
+  "docker_image": "alexgshaw/cancel-async-tasks:20251031",
+  "duration_sec": 41,
+  "reward": 0,
+  "container_id": "222ccb7e62b142354066140084eca38dc5fcf8a27e5a71f5ad10f3f293ed1b70",
+  "timestamp": "20260412_170307",
+  "model": "claude-opus-4-6",
+  "effort": "low"
+}

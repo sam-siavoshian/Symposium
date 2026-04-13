@@ -1,0 +1,5 @@
+Works. The function:
+
+- Uses `asyncio.Semaphore(max_concurrent)` to limit concurrency
+- Wraps each task in a `create_task` so they run in parallel (up to the semaphore limit)
+- On `KeyboardInterrupt` or `CancelledError`, cancels all running tasks then `await`s them with `return_exceptions=True` so their `finally` cleanup blocks execute before re-raising

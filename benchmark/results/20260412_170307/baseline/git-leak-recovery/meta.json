@@ -1,0 +1,11 @@
+{
+  "task": "git-leak-recovery",
+  "mode": "baseline",
+  "docker_image": "alexgshaw/git-leak-recovery:20251031",
+  "duration_sec": 35,
+  "reward": 1,
+  "container_id": "5ca033834ffc0b809d7a871ea885fbe3b15aea1a5e7e243dff9f9b8cc38dcd60",
+  "timestamp": "20260412_170307",
+  "model": "claude-opus-4-6",
+  "effort": "low"
+}

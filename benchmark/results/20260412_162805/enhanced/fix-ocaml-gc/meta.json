@@ -1,0 +1,11 @@
+{
+  "task": "fix-ocaml-gc",
+  "mode": "enhanced",
+  "docker_image": "alexgshaw/fix-ocaml-gc:20251031",
+  "duration_sec": 9,
+  "reward": 0,
+  "container_id": "570c906b9bdf0dd2cfd71d171cfab874746f43da2ee193f92eaedc0b8beba6a5",
+  "timestamp": "20260412_162805",
+  "model": "claude-opus-4-6",
+  "effort": "medium"
+}

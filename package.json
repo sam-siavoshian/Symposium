@@ -1,11 +1,46 @@
 {
   "name": "symposium",
   "version": "1.0.0",
-  "description": "Multi-agent reasoning engine that turns Opus into Mythos. Spawns parallel Nia-powered research agents to discover knowledge models don't have.",
+  "description": "Multi-agent reasoning MCP server for Claude Code. Spawns parallel research agents to find knowledge LLMs don't have, cross-validates against live docs and real code, and exports corrections as training data. +23.1% on Terminal Bench 2.0 SWE tasks.",
   "module": "src/index.ts",
   "main": "src/index.ts",
   "type": "module",
-  "private": true,
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "claude",
+    "claude-code",
+    "ai-agents",
+    "multi-agent",
+    "research-engine",
+    "llm",
+    "nia",
+    "code-generation",
+    "training-data",
+    "fine-tuning",
+    "dpo",
+    "terminal-bench",
+    "benchmark",
+    "developer-tools"
+  ],
+  "homepage": "https://github.com/sam-siavoshian/Symposium",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sam-siavoshian/Symposium.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sam-siavoshian/Symposium/issues"
+  },
+  "author": {
+    "name": "Saam Siavoshian",
+    "email": "samsiavoshian2009@gmail.com",
+    "url": "https://x.com/samsiavoshian"
+  },
+  "license": "MIT",
+  "engines": {
+    "bun": ">=1.0.0"
+  },
   "scripts": {
     "start": "bun run src/index.ts",
     "test": "bun test",

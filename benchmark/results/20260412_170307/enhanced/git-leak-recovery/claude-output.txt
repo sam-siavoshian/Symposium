@@ -1,0 +1,10 @@
+All done. Here's what happened:
+
+1. **Recovered the secret**: The commit `6b4c75c` ("feat: add scratch notes") had been removed via `git reset HEAD~1`, but was still reachable through the reflog and as a dangling object. The secret `secret[lost_and_found_in_git]` was written to `/app/secret.txt`.
+
+2. **Cleaned up the repo**: 
+   - `git reflog expire --expire=now --all` - purged all reflog entries referencing the dangling commit
+   - `git gc --prune=now --aggressive` - garbage collected the dangling commit, tree, and blob objects
+   - Verified: `git fsck` shows no unreachable objects, reflog is empty, and `grep` finds no trace of the secret anywhere in the repo
+
+3. **Existing content preserved**: Both commits (`7a2420e` and `c6d9997`) with their original messages ("chore: init ...") and files (`README.md`) remain untouched.

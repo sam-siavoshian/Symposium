@@ -10,9 +10,7 @@ dist
 coverage
 *.lcov
 
-# Terminal-Bench / Harbor run output (large, machine-local)
-benchmark/results/*/
-benchmark/full-run/
+
 
 # logs
 logs

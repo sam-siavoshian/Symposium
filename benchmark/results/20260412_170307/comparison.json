@@ -1,0 +1,185 @@
+{
+  "generated_at": "2026-04-13T01:20:35.283Z",
+  "baseline": {
+    "mode": "baseline",
+    "tasks": [
+      {
+        "task": "fix-code-vulnerability",
+        "reward": 1,
+        "duration_sec": 67,
+        "status": "PASS"
+      },
+      {
+        "task": "fix-git",
+        "reward": 1,
+        "duration_sec": 47,
+        "status": "PASS"
+      },
+      {
+        "task": "fix-ocaml-gc",
+        "reward": 0,
+        "duration_sec": 900,
+        "status": "FAIL"
+      },
+      {
+        "task": "cancel-async-tasks",
+        "reward": 0,
+        "duration_sec": 41,
+        "status": "FAIL"
+      },
+      {
+        "task": "cobol-modernization",
+        "reward": 1,
+        "duration_sec": 201,
+        "status": "PASS"
+      },
+      {
+        "task": "compile-compcert",
+        "reward": 0,
+        "duration_sec": 900,
+        "status": "FAIL"
+      },
+      {
+        "task": "configure-git-webserver",
+        "reward": 0,
+        "duration_sec": 126,
+        "status": "FAIL"
+      },
+      {
+        "task": "git-leak-recovery",
+        "reward": 1,
+        "duration_sec": 35,
+        "status": "PASS"
+      },
+      {
+        "task": "git-multibranch",
+        "reward": 1,
+        "duration_sec": 99,
+        "status": "PASS"
+      },
+      {
+        "task": "polyglot-c-py",
+        "reward": 0,
+        "duration_sec": 188,
+        "status": "FAIL"
+      },
+      {
+        "task": "polyglot-rust-c",
+        "reward": 0,
+        "duration_sec": 202,
+        "status": "FAIL"
+      },
+      {
+        "task": "query-optimize",
+        "reward": 0,
+        "duration_sec": 901,
+        "status": "FAIL"
+      },
+      {
+        "task": "sanitize-git-repo",
+        "reward": 1,
+        "duration_sec": 104,
+        "status": "PASS"
+      }
+    ],
+    "passed": 6,
+    "total": 13,
+    "score_pct": 46.2
+  },
+  "enhanced": {
+    "mode": "enhanced",
+    "tasks": [
+      {
+        "task": "fix-code-vulnerability",
+        "reward": 1,
+        "duration_sec": 134,
+        "status": "PASS"
+      },
+      {
+        "task": "fix-git",
+        "reward": 1,
+        "duration_sec": 61,
+        "status": "PASS"
+      },
+      {
+        "task": "fix-ocaml-gc",
+        "reward": 1,
+        "duration_sec": 1460,
+        "status": "PASS"
+      },
+      {
+        "task": "cancel-async-tasks",
+        "reward": 1,
+        "duration_sec": 759,
+        "status": "PASS"
+      },
+      {
+        "task": "cobol-modernization",
+        "reward": 1,
+        "duration_sec": 523,
+        "status": "PASS"
+      },
+      {
+        "task": "compile-compcert",
+        "reward": 1,
+        "duration_sec": 1068,
+        "status": "PASS"
+      },
+      {
+        "task": "configure-git-webserver",
+        "reward": 0,
+        "duration_sec": 592,
+        "status": "FAIL"
+      },
+      {
+        "task": "git-leak-recovery",
+        "reward": 1,
+        "duration_sec": 58,
+        "status": "PASS"
+      },
+      {
+        "task": "git-multibranch",
+        "reward": 1,
+        "duration_sec": 404,
+        "status": "PASS"
+      },
+      {
+        "task": "polyglot-c-py",
+        "reward": 0,
+        "duration_sec": 203,
+        "status": "FAIL"
+      },
+      {
+        "task": "polyglot-rust-c",
+        "reward": 0,
+        "duration_sec": 340,
+        "status": "FAIL"
+      },
+      {
+        "task": "query-optimize",
+        "reward": 0,
+        "duration_sec": 1255,
+        "status": "FAIL"
+      },
+      {
+        "task": "sanitize-git-repo",
+        "reward": 1,
+        "duration_sec": 414,
+        "status": "PASS"
+      }
+    ],
+    "passed": 9,
+    "total": 13,
+    "score_pct": 69.2
+  },
+  "delta": {
+    "tasks_gained": 3,
+    "score_pct_delta": 23,
+    "improved_tasks": [
+      "fix-ocaml-gc",
+      "cancel-async-tasks",
+      "compile-compcert"
+    ],
+    "regressed_tasks": []
+  }
+}

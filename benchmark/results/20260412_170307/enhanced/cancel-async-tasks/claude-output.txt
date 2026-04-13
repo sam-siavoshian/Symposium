@@ -1,0 +1,6 @@
+Done. Here's what `/app/run.py` does:
+
+- **`asyncio.Semaphore(max_concurrent)`** — gates concurrency so at most `max_concurrent` tasks run simultaneously
+- **`asyncio.TaskGroup`** — the key choice. When Ctrl+C fires, `asyncio.run()` converts SIGINT into `CancelledError` via `Task.cancel()`. TaskGroup catches this, cancels all child tasks, then **waits for every child to finish** (including their `finally` blocks) before re-raising. This guarantees cleanup code runs for any in-flight task.
+
+No external packages needed. Pure stdlib.

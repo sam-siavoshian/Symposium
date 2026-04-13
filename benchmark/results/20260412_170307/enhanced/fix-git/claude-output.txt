@@ -1,0 +1,14 @@
+Done. Your "Move to Stanford" changes are now merged into master. Here's what happened and what I did:
+
+**What went wrong:** You checked out `HEAD~1` (detached HEAD), made your commit there, then ran `git checkout master`. That left commit `650dba4` dangling... not on any branch, only findable via `git reflog`.
+
+**What I did:**
+- Found the dangling commit `650dba4` in the reflog
+- Merged it into master
+- Resolved a conflict in `_includes/about.md` (kept your new Stanford bio)
+- The `_layouts/default.html` changes (header → "Postdoc @ Stanford", formatting cleanup) merged cleanly
+
+**Your changes that are now on master:**
+- Bio updated to "Postdoctoral Researcher at Stanford CS"
+- Header changed from "PhD Student @ UW CSE" to "Postdoc @ Stanford"
+- Minor whitespace/formatting cleanup in the HTML template

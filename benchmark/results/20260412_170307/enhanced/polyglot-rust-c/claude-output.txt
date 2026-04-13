@@ -1,0 +1,17 @@
+Both compilers produce correct results. Here's the final file:
+
+```
+//\
+fn main(){let n:u32=std::env::args().nth(1).unwrap().parse().unwrap();let(mut a,mut b)=(1u64,1u64);for _ in 0..n{let t=a+b;a=b;b=t;}println!("{}",a);}/*
+#include <cstdio>
+#include <cstdlib>
+int main(int c,char**v){int n=atoi(v[1]);long long a=1,b=1;for(int i=0;i<n;i++){long long t=a+b;a=b;b=t;}printf("%lld\n",a);}
+// */
+```
+
+**How it works:**
+
+- **Line 1 `//\`** — In C++, `\` at end of a `//` comment is line continuation, so line 2 is also commented out. In Rust, `\` is not line continuation, so only line 1 is a comment.
+- **Line 2** — Rust sees the `fn main()` with Fibonacci logic, then `/*` opens a block comment. C++ sees nothing (still in the `//` comment from line 1).
+- **Lines 3–5** — C++ sees its `#include` directives and `int main()`. Rust sees block comment text (no `/*` or `*/` in the C++ code to interfere with nesting).
+- **Line 6 `// */`** — C++ sees a line comment. Rust sees `*/` which closes the block comment (the space between `//` and `*/` prevents Rust from parsing `/*` as a nested comment opener).

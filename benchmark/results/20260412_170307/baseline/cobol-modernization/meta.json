@@ -1,0 +1,11 @@
+{
+  "task": "cobol-modernization",
+  "mode": "baseline",
+  "docker_image": "alexgshaw/cobol-modernization:20251031",
+  "duration_sec": 201,
+  "reward": 1,
+  "container_id": "c9b410e68176d484df31e3c46badc1ca0bf0c67cb0f8e58ab98a9bc007d27af8",
+  "timestamp": "20260412_170307",
+  "model": "claude-opus-4-6",
+  "effort": "low"
+}

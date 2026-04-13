@@ -1,0 +1,11 @@
+{
+  "task": "polyglot-c-py",
+  "mode": "enhanced",
+  "docker_image": "alexgshaw/polyglot-c-py:20251031",
+  "duration_sec": 9,
+  "reward": 0,
+  "container_id": "b0159ccfbe073b42bc21b40350337dc7c1e7454de70a85f7cccee4fa0b45e215",
+  "timestamp": "20260412_162805",
+  "model": "claude-opus-4-6",
+  "effort": "medium"
+}

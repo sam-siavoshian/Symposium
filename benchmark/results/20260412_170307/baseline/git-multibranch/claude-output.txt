@@ -1,0 +1,8 @@
+Done. The Git server is set up with:
+
+- **Bare repo** at `/git/project.git` accessible via `git@localhost:/git/project.git`
+- **SSH** with password authentication (user `git`, password `password`)
+- **Nginx** serving HTTPS on port 8443 with a self-signed certificate
+  - `https://localhost:8443/index.html` serves from main branch
+  - `https://localhost:8443/dev/index.html` serves from dev branch
+- **post-receive hook** deploys on push, checking out each branch to its respective directory

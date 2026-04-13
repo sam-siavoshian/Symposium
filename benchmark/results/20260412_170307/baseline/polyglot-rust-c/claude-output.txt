@@ -1,0 +1,6 @@
+Both compilers build and produce identical output. The polyglot is at `/app/polyglot/main.rs`.
+
+**How it works:** The `//\` trick exploits that C++ treats `\` at end of a line comment as continuation (next line is also commented), but Rust does not. So:
+
+- **Rust** sees `//\` as a regular comment, then `/*` starts a block comment hiding all the C++ code, then `*/` ends it, then another `//\` comment, then `fn main()...` as real code.
+- **C++** sees `//\` which comments out the next line (`/*`), so no block comment starts. C++ code runs normally. Then another `//\` comments out `*/` and the Rust `fn main` line.

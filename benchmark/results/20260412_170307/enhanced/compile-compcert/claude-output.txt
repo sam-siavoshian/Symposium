@@ -1,0 +1,14 @@
+CompCert 3.13.1 is fully built, installed, and functional. Here's what was done:
+
+**Environment**: Ubuntu 24.04 x86_64 (inside Docker container)
+
+**Dependencies installed**: `build-essential`, `gcc`, `coq` (8.18.0), `ocaml` (4.14.1), `menhir` (20231231), plus associated dev libraries
+
+**Build steps**:
+1. Downloaded CompCert v3.13.1 from GitHub
+2. Configured with `./configure -prefix /tmp/CompCert -ignore-coq-version x86_64-linux` (Coq 8.18 is outside the hardcoded 8.12-8.16.1 whitelist)
+3. Patched one Flocq compatibility issue: `Z_div_mod_eq` was removed in Coq 8.18, replaced with `Zdiv.Z_div_mod_eq_full` in `flocq/Calc/Bracket.v`
+4. Built with `make -j1 all` (single job to avoid OOM in container)
+5. Installed via `make install`, then copied `ccomp` binary and `compcert.ini` to `/tmp/CompCert/`
+
+**Result**: `/tmp/CompCert/ccomp` reports version 3.13 and successfully compiles + runs C programs.

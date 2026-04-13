@@ -1,0 +1,7 @@
+Done. Here's what happened:
+
+1. Your "Move to Stanford" commit (`650dba4`) was made from a detached HEAD state (you had checked out `HEAD~1` before making the commit).
+2. When you switched back to `master`, that commit was left orphaned since no branch pointed to it.
+3. I found it via `git reflog`, merged it into `master`, resolved the conflict in `_includes/about.md` in favor of your Stanford update, and committed.
+
+Your bio now reads "Postdoctoral Researcher at Stanford CS" on master.

@@ -1,0 +1,11 @@
+{
+  "task": "sanitize-git-repo",
+  "mode": "enhanced",
+  "docker_image": "alexgshaw/sanitize-git-repo:20251031",
+  "duration_sec": 10,
+  "reward": 0,
+  "container_id": "e47c658b331d9c2e0e3c84c417b3c9ae1618422b87aee8bc8445a5ffd55a4ec4",
+  "timestamp": "20260412_162805",
+  "model": "claude-opus-4-6",
+  "effort": "medium"
+}
