@@ -40,21 +40,22 @@ I ran the **13 hardest SWE tasks** from Terminal Bench 2.0 head-to-head. Vanilla
 ┌────────────────────────────┬────────────────────────────┐
 │   Vanilla Claude Code      │   Claude + Symposium       │
 │                            │                            │
-│        46.2%               │        61.5%  ✅           │
-│       6 of 13              │       8 of 13              │
+│        46.2%               │        69.2%  ✅           │
+│       6 of 13              │       9 of 13              │
 │                            │                            │
 │   Opus 4.6, no MCP        │   Opus 4.6 + Symposium     │
 └────────────────────────────┴────────────────────────────┘
 
-  +2 tasks flipped  ·  0 regressions  ·  +15.4% score gain
+  +3 tasks flipped  ·  0 regressions  ·  +23.1% score gain
 ```
 
-**Every task vanilla solved, Symposium also solved. Zero regressions.** Two tasks that vanilla Claude failed were flipped to pass:
+**Every task vanilla solved, Symposium also solved. Zero regressions.** Three tasks that vanilla Claude failed were flipped to pass:
 
 | Task | Vanilla | Symposium | What happened |
 |------|---------|-----------|---------------|
 | `cancel-async-tasks` | ❌ Fail (41s) | ✅ Pass (759s) | Needed specific async cancellation patterns. Vanilla gave up with a wrong approach. Symposium researched the patterns, gave Claude verified knowledge. |
 | `compile-compcert` | ❌ Fail (900s) | ✅ Pass (1068s) | Required knowledge about CompCert's build system that wasn't in training data. Vanilla timed out. Symposium found the correct configuration live. |
+| `fix-ocaml-gc` | ❌ Fail (900s) | ✅ Pass (1460s) | Required deep knowledge of OCaml's garbage collector internals. Vanilla timed out. Symposium researched the right approach live and Claude fixed the GC. |
 
 <details>
 <summary><b>Full results (all 13 tasks)</b></summary>
@@ -67,12 +68,12 @@ I ran the **13 hardest SWE tasks** from Terminal Bench 2.0 head-to-head. Vanilla
 | `configure-git-webserver` | ❌ | ❌ | 126s | 592s |
 | `fix-code-vulnerability` | ✅ | ✅ | 67s | 134s |
 | `fix-git` | ✅ | ✅ | 47s | 61s |
-| `fix-ocaml-gc` | ❌ | ⏳ | 900s | — |
+| `fix-ocaml-gc` | ❌ | ✅ | 900s | 1460s |
 | `git-leak-recovery` | ✅ | ✅ | 35s | 58s |
 | `git-multibranch` | ✅ | ✅ | 99s | 404s |
 | `polyglot-c-py` | ❌ | ❌ | 188s | 203s |
 | `polyglot-rust-c` | ❌ | ❌ | 202s | 340s |
-| `query-optimize` | ❌ | ⏳ | 900s | — |
+| `query-optimize` | ❌ | ❌ | 900s | 1255s |
 | `sanitize-git-repo` | ✅ | ✅ | 104s | 414s |
 
 </details>
