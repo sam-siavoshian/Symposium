@@ -5,6 +5,8 @@
 [![Bun](https://img.shields.io/badge/Runtime-Bun-black.svg)](https://bun.sh)
 [![MCP](https://img.shields.io/badge/Protocol-MCP-purple.svg)](https://modelcontextprotocol.io)
 
+### +23.1% on Terminal Bench 2.0 SWE tasks — 46.2% → 69.2% (Opus 4.6 baseline → Opus 4.6 + Symposium)
+
 Discovers what LLMs get wrong, researches the real answer from live docs and code, solves it in real-time, and exports corrections as training data to train better models.
 
 > **TL;DR:** An MCP server that spawns parallel research agents to find knowledge that language models don't have. Each agent researches the problem from a different angle (docs, repos, failure modes, codebase patterns, tests). Findings get cross-validated, synthesized into a verified plan, and stored so the next user gets an instant answer. Every discovery exports as fine-tuning data.
