@@ -100,7 +100,7 @@ The gap between "what models know" and "what they need to know" is where Symposi
 ### One-line install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/samsiavoshian/symposium/main/install.sh | NIA_API_KEY=nk_your_key sh
+curl -fsSL https://raw.githubusercontent.com/sam-siavoshian/Symposium/main/install.sh | NIA_API_KEY=nk_your_key sh
 ```
 
 The installer checks prerequisites, installs Bun if needed, clones the repo, validates your API key against Nia, and writes the MCP config to `~/.claude.json`. Takes about 10 seconds.
@@ -108,7 +108,7 @@ The installer checks prerequisites, installs Bun if needed, clones the repo, val
 ### Manual install
 
 ```bash
-git clone https://github.com/samsiavoshian/symposium.git ~/.symposium
+git clone https://github.com/sam-siavoshian/Symposium.git ~/.symposium
 cd ~/.symposium
 bun install
 ```

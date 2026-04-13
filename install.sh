@@ -3,7 +3,7 @@
 # Multi-agent reasoning engine for Claude Code
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/samsiavoshian/symposium/main/install.sh | sh
+#   curl -fsSL https://raw.githubusercontent.com/sam-siavoshian/Symposium/main/install.sh | sh
 #   curl -fsSL ... | NIA_API_KEY=nk_... sh
 #   sh install.sh
 #
@@ -81,7 +81,7 @@ _elapsed() {
 # ─── Constants ──────────────────────────────────────────
 
 INSTALL_DIR="${INSTALL_DIR:-$HOME/.symposium}"
-REPO_URL="https://github.com/samsiavoshian/symposium.git"
+REPO_URL="https://github.com/sam-siavoshian/Symposium.git"
 CLAUDE_CONFIG="$HOME/.claude.json"
 SERVER_NAME="symposium"
 ENTRY_POINT="$INSTALL_DIR/src/index.ts"
@@ -373,7 +373,7 @@ printf "  ${C_RAIL}│${RESET}                                               ${C
 printf "  ${C_RAIL}├───────────────────────────────────────────────╯${RESET}\n"
 rail
 printf "  ${C_RAIL}│${RESET}  ${C_SUBTLE}Installed to: %s${RESET}\n" "$INSTALL_DIR"
-printf "  ${C_RAIL}│${RESET}  ${C_SUBTLE}Docs: https://github.com/samsiavoshian/symposium${RESET}\n"
+printf "  ${C_RAIL}│${RESET}  ${C_SUBTLE}Docs: https://github.com/sam-siavoshian/Symposium${RESET}\n"
 printf "  ${C_RAIL}│${RESET}  ${C_SUBTLE}Nia:  https://app.trynia.ai${RESET}\n"
 printf "  ${C_RAIL}│${RESET}  ${C_SUBTLE}Uninstall: rm -rf ~/.symposium && remove \"symposium\" from ~/.claude.json${RESET}\n"
 rail
