@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Author on X
+    url: https://x.com/samsiavoshian
+    about: Reach Saam directly.
+  - name: Nia status page
+    url: https://app.trynia.ai/
+    about: Check Nia API health before filing a bug.
