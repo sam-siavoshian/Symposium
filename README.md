@@ -1,11 +1,11 @@
-# Symposium — Multi-Agent Reasoning Engine for Claude Code
+# Symposium: Multi-Agent Reasoning Engine for Claude Code
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue.svg)](https://www.typescriptlang.org/)
 [![Bun](https://img.shields.io/badge/Runtime-Bun-black.svg)](https://bun.sh)
 [![MCP](https://img.shields.io/badge/Protocol-MCP-purple.svg)](https://modelcontextprotocol.io)
 
-### +23.1% on Terminal Bench 2.0 SWE tasks — 46.2% → 69.2% (Opus 4.6 baseline → Opus 4.6 + Symposium)
+### +23.1% on Terminal Bench 2.0 SWE tasks. 46.2% → 69.2% (Opus 4.6 baseline → Opus 4.6 + Symposium).
 
 Discovers what LLMs get wrong, researches the real answer from live docs and code, solves it in real-time, and exports corrections as training data to train better models.
 
@@ -24,6 +24,8 @@ Discovers what LLMs get wrong, researches the real answer from live docs and cod
          agents)         plan)        training data)
 ```
 
+<!-- TODO: add demo.gif or asciinema showing a real Symposium run end-to-end (recall miss → spawn → synthesize → plan → learn). 8-15s, <5MB. Replace this comment. -->
+
 ## Why?
 
 LLMs are great at the stuff in their training data. Add Stripe. Read docs. Update an API. Easy. But some tasks, they just fail. Hallucinate a function signature. Use a deprecated API. Confidently write broken code.
@@ -34,7 +36,7 @@ Same idea here. Models nail the common patterns. Symposium finds those blind spo
 
 ---
 
-## 📈 Benchmark: Outperforming Opus on Terminal Bench 2.0
+## Benchmark: outperforming Opus on Terminal Bench 2.0
 
 I ran the **13 hardest SWE tasks** from Terminal Bench 2.0 head-to-head. Vanilla Claude Code (Opus 4.6) vs Claude Code + Symposium. Same model. Same effort. Same timeout.
 
@@ -45,7 +47,7 @@ I ran the **13 hardest SWE tasks** from Terminal Bench 2.0 head-to-head. Vanilla
 │        46.2%               │        69.2%  ✅           │
 │       6 of 13              │       9 of 13              │
 │                            │                            │
-│   Opus 4.6, no MCP        │   Opus 4.6 + Symposium     │
+│   Opus 4.6, no MCP         │   Opus 4.6 + Symposium     │
 └────────────────────────────┴────────────────────────────┘
 
   +3 tasks flipped  ·  0 regressions  ·  +23.1% score gain
@@ -82,9 +84,11 @@ I ran the **13 hardest SWE tasks** from Terminal Bench 2.0 head-to-head. Vanilla
 
 The gap between "what models know" and "what they need to know" is where Symposium lives.
 
+Reproduce: `bash benchmark/setup.sh && bash benchmark/run.sh` (needs Docker, `ANTHROPIC_API_KEY`, `NIA_API_KEY`, Harbor CLI). Results land in `benchmark/results/<timestamp>/`.
+
 ---
 
-## ✨ Features
+## Features
 
 - **Multi-angle research.** Spawns parallel agents that each approach the problem differently. One reads docs, one searches GitHub repos, one checks failure modes, one studies your codebase, one plans tests. Not 10 agents hallucinating the same wrong answer.
 - **Dual-mode cross-validation.** `api_correctness` runs both Oracle (docs) and Tracer (real GitHub code) in parallel. When they agree, confidence goes up. When they don't, you know something's off.
@@ -98,7 +102,7 @@ The gap between "what models know" and "what they need to know" is where Symposi
 
 ---
 
-## Quick Start
+## Quick start
 
 ### One-line install
 
@@ -106,7 +110,7 @@ The gap between "what models know" and "what they need to know" is where Symposi
 curl -fsSL https://raw.githubusercontent.com/sam-siavoshian/Symposium/main/install.sh | NIA_API_KEY=nk_your_key sh
 ```
 
-The installer checks prerequisites, installs Bun if needed, clones the repo, validates your API key against Nia, and writes the MCP config to `~/.claude.json`. Takes about 10 seconds.
+The installer checks prerequisites, installs Bun if needed, clones the repo to `~/.symposium`, validates your API key against Nia, and writes the MCP config to `~/.claude.json`. Takes about 10 seconds.
 
 ### Manual install
 
@@ -139,7 +143,7 @@ Restart Claude Code (or run `/mcp`).
 
 - **[Bun](https://bun.sh)** runtime (installer handles this)
 - **[Claude Code](https://code.claude.com)** (CLI or IDE extension)
-- **[Nia API key](https://app.trynia.ai/settings)** — powers the research agents
+- **[Nia API key](https://app.trynia.ai/settings)** which powers the research agents
 
 ---
 
@@ -161,7 +165,6 @@ Once installed, Claude Code automatically uses Symposium when it needs to resear
 
 ### Research depths
 
-
 | Depth      | Agents | When to use                                                           |
 | ---------- | ------ | --------------------------------------------------------------------- |
 | `auto`     | 2-4    | Default. Analyzes the issue and picks minimum agents needed.          |
@@ -169,9 +172,7 @@ Once installed, Claude Code automatically uses Symposium when it needs to resear
 | `standard` | 5      | Most tasks. Adds `failure_modes` + `test_strategy`.                   |
 | `deep`     | 6      | Complex problems. All 6 research dimensions.                          |
 
-
 ### Tools
-
 
 | Tool                  | Purpose                                                          |
 | --------------------- | ---------------------------------------------------------------- |
@@ -180,10 +181,9 @@ Once installed, Claude Code automatically uses Symposium when it needs to resear
 | `symposium_export`    | Export as JSONL, markdown, or DPO training data.                 |
 | `symposium_feedback`  | Report if recalled knowledge was correct, incorrect, or partial. |
 
-
 ---
 
-## How It Works
+## How it works
 
 ```
 User asks about a library/API
@@ -228,7 +228,6 @@ User asks about a library/API
 
 ### Research dimensions
 
-
 | Dimension           | Agent type                  | What it does                                                 |
 | ------------------- | --------------------------- | ------------------------------------------------------------ |
 | `api_correctness`   | Oracle + Tracer (dual-mode) | Verifies API usage against real docs and real code           |
@@ -237,7 +236,6 @@ User asks about a library/API
 | `failure_modes`     | Oracle                      | Identifies what can go wrong (auth, networking, concurrency) |
 | `existing_patterns` | Oracle                      | Studies patterns the codebase already uses                   |
 | `test_strategy`     | Oracle                      | Plans how to test the implementation                         |
-
 
 ### Evidence scoring
 
@@ -251,12 +249,12 @@ composite = (convergence×1 + tracerEvidence×2 + patternConsistency×1
 
 - **Agent convergence:** substantive findings / total agents spawned
 - **Tracer evidence:** unique GitHub repos found (3 repos = full score)
-- **Cross-validation:** Oracle and Tracer agree on the same dimension → +0.5 bonus
+- **Cross-validation:** Oracle and Tracer agree on the same dimension, +0.5 bonus
 - **Completeness:** findings returned / agents dispatched
 
 ---
 
-## Project Layout
+## Project layout
 
 ```
 src/
@@ -279,6 +277,7 @@ src/
   utils/
     prompts.ts             All prompt templates (6 dimensions + synthesizer)
     logger.ts              Stderr logger with colors and timestamps
+benchmark/                 Terminal Bench 2.0 harness + collected results
 scripts/
   smoke-test.ts            Live API verification
   test-oracle.ts           Ad-hoc Oracle debugging
@@ -306,8 +305,9 @@ NIA_API_KEY=nk_... bun run smoke
 NIA_API_KEY=nk_... bun run start
 ```
 
-### Environment variables
+PRs welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, conventions, and PR flow.
 
+### Environment variables
 
 | Variable          | Required | Description                                                                            |
 | ----------------- | -------- | -------------------------------------------------------------------------------------- |
@@ -315,10 +315,9 @@ NIA_API_KEY=nk_... bun run start
 | `LOG_LEVEL`       | No       | `debug`, `info`, `warn`, or `error`. Default: `info`.                                  |
 | `DIMENSION_MODEL` | No       | Override the model for secondary dimensions.                                           |
 
-
 ---
 
-## Training Data Export
+## Training data export
 
 Symposium doesn't just fix problems in real-time. It builds a dataset of what models get wrong.
 
@@ -328,31 +327,23 @@ Symposium doesn't just fix problems in real-time. It builds a dataset of what mo
 
 Three formats:
 
-- **`jsonl`** — One JSON object per line. Each entry has `library`, `mistake`, `correct`, `confidence`, `evidence`.
-- **`markdown`** — Human-readable report of all discoveries.
-- **`training`** — DPO-format with `chosen` (verified answer) and `rejected` (what the model got wrong) pairs, with reasoning. Ready for fine-tuning.
+- **`jsonl`**. One JSON object per line. Each entry has `library`, `mistake`, `correct`, `confidence`, `evidence`.
+- **`markdown`**. Human-readable report of all discoveries.
+- **`training`**. DPO-format with `chosen` (verified answer) and `rejected` (what the model got wrong) pairs, with reasoning. Ready for fine-tuning.
 
 The idea: the stuff models fail at today becomes the data that fixes them tomorrow.
 
 ---
 
-## Built With
+## Built with
 
-- [Model Context Protocol](https://modelcontextprotocol.io) — tool protocol for AI assistants
-- [Nia SDK](https://www.trynia.ai) — Oracle agents, Tracer (GitHub search), Context API, Advisor
-- [Bun](https://bun.sh) — JavaScript runtime
-- [TypeScript](https://www.typescriptlang.org/) — strict mode, ESNext
+- [Model Context Protocol](https://modelcontextprotocol.io). Tool protocol for AI assistants.
+- [Nia SDK](https://www.trynia.ai). Oracle agents, Tracer (GitHub search), Context API, Advisor.
+- [Bun](https://bun.sh). JavaScript runtime.
+- [TypeScript](https://www.typescriptlang.org/). Strict mode, ESNext.
 
 ---
 
 ## License
 
-[MIT](./LICENSE) © Saam Siavoshian
-
-## Author
-
-**Saam Siavoshian**
-
-- X: [@samsiavoshian](https://x.com/samsiavoshian)
-- Email: [samsiavoshian2009@gmail.com](mailto:samsiavoshian2009@gmail.com)
-
+[MIT](./LICENSE) © Saam Siavoshian. X: [@samsiavoshian](https://x.com/samsiavoshian).
